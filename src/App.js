@@ -1,25 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react'
+import { RefComponent } from './6_RefComponent/6_RefComponent'
+import { StarRating } from './6_StarRating/StarRating'
+import './App.css'
 
-function App() {
+function App () {
+  //BLL
+  const data = {
+    starsAmount: 5,
+    activeStars: false
+  }
+
+  let [starsAmount, setStarsAmount] = useState(data.starsAmount)
+  let [activeStars, setActiveStars] = useState(data.activeStars)
+
+  function changeStarsAmount (value) {
+    setStarsAmount(value)
+  }
+
+  function changeStarsActivity(value) {
+    setActiveStars(value)
+  }
+  //UI
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <RefComponent />
+      <StarRating
+        starsAmount={starsAmount}
+        activeStars={activeStars}
+        changeStarsAmount={changeStarsAmount}
+        changeStarsActivity={changeStarsActivity}
+        activeStars={activeStars}
+      />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
